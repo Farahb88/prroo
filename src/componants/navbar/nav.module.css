@@ -1,0 +1,28 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  justify-self: flex-start;
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
+  margin: 0 auto;
+}
+.icons span {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  cursor: pointer;
+  list-style: none;
+  padding: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.icons span:hover {
+  background-color: #7dc1eb;
+  border-radius: 25px;
+  color: white;
+}

@@ -1,0 +1,11 @@
+.posts {
+    height: 100px;
+    width: 150px;
+
+    padding: 20px;
+}
+#avatar{
+    width: 70px;
+    height: 70px;
+    border-radius: 32px;
+}
