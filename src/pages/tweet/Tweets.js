@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import "./tweet.css";
 
-
 const Tweets = () => {
   const { token } = useContext(AuthContext);
   const [tweets, setTweets] = useState([]);
@@ -36,12 +35,12 @@ const Tweets = () => {
           tweets.map((tweet, i) => {
             return (
               <div key={i} className="posts">
-              
                 <img id="avatar" src={tweet.user.avatar} />
-                
+
                 <h1>{tweet.user.name}</h1>
-                {tweet.content} {tweet.likes_count} {tweet.comments_count}
-              
+                <div>{tweet.content}</div>
+                <div>{tweet.likes_count}</div>
+                <div>{tweet.comments_count}</div>
               </div>
             );
           })}
