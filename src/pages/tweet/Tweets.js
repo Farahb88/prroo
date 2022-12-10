@@ -30,7 +30,7 @@ const Tweets = () => {
   };
   return (
     <>
-      <div>
+      <div className="tweetbox">
         {tweets?.length > 0 &&
           tweets.map((tweet, i) => {
             return (
@@ -44,13 +44,14 @@ const Tweets = () => {
               </div>
             );
           })}
-      </div>
-      <input
+          <input
         type="button"
         className="button"
         value="load more"
         onClick={tweetload}
       ></input>
+      </div>
+      
     </>
   );
 };
