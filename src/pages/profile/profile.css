@@ -1,4 +1,4 @@
-.profilebox {
+/* .profilebox {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -6,6 +6,15 @@
     align-items: center;
     margin-right: 50%;
     
+} */
+.profilebox {
+    display: flex;
+    flex-direction: row;
+    margin: 0 0;
+    align-items: center;    
+    height: auto;
+    width: 300px;
+    align-items: center;
 }
 .profilebtn{
     background-color: #0d6efd;;

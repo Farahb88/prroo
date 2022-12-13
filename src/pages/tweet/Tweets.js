@@ -1,6 +1,9 @@
+import "./tweet.css";
+import moment from "moment/moment";
+import Gravatar from "react-gravatar";
+import { ChatBubbleOutline, FavoriteBorder } from "@mui/icons-material";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import "./tweet.css";
 
 const Tweets = () => {
   const { token } = useContext(AuthContext);
@@ -10,7 +13,7 @@ const Tweets = () => {
   useEffect(() => {
     const getTweets = async (count) => {
       const response = await fetch(
-        `http://ferasjobeir.com/api/posts?${count}`,
+        `http://ferasjobeir.com/api/posts?page=${count}`,
         {
           method: "get",
           headers: {
@@ -30,28 +33,60 @@ const Tweets = () => {
   };
   return (
     <>
+      <div className="mytweet">
+        <h1 className="home">Home</h1>
+        <div className="mysmg"></div>
+        <div>
+          <Gravatar
+            className="pic"
+            email="farahb88@gmail.com"
+            size={80}
+            style={{
+              borderRadius: "80px",
+              marginLeft: "4px",
+              marginTop: 3,
+            }}
+          />
+          <input
+            className="textmsg"
+            type="text"
+            placeholder="what is going on"
+          ></input>
+          <input className="msgbtn" type="button" value="create post"></input>
+        </div>
+      </div>
+
       <div className="tweetbox">
         {tweets?.length > 0 &&
           tweets.map((tweet, i) => {
             return (
               <div key={i} className="posts">
                 <img id="avatar" src={tweet.user.avatar} />
-
-                <h1>{tweet.user.name}</h1>
-                <div>{tweet.content}</div>
-                <div>{tweet.likes_count}</div>
-                <div>{tweet.comments_count}</div>
+                <div>
+                  <h3>{tweet.user.name}</h3>
+                  <div>{tweet.created_at}</div>
+                  <p>{tweet.content}</p>
+                  <div className="likecomenticons">
+                    <span className="likecoment">
+                      <FavoriteBorder />
+                      <input type="button" value={tweet.likes_count}></input>
+                    </span>
+                    <span className="likecoment">
+                      <ChatBubbleOutline />
+                      <input type="button" value={tweet.comments_count}></input>
+                    </span>
+                  </div>
+                </div>
               </div>
             );
           })}
-          <input
-        type="button"
-        className="button"
-        value="load more"
-        onClick={tweetload}
-      ></input>
+        <input
+          type="button"
+          className="button"
+          value="load more"
+          onClick={tweetload}
+        ></input>
       </div>
-      
     </>
   );
 };

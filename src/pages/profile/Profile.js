@@ -2,6 +2,7 @@ import { useContext, useState, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import "./profile.css";
 import Nav from "../../componants/navbar/Nav";
+import Gravatar from "react-gravatar";
 
 const Profile = () => {
   const { user, token } = useContext(AuthContext);
@@ -27,15 +28,18 @@ const Profile = () => {
     console.log(json);
   };
   return (
+    <>
     <div className="profilebox">
-      <Nav />
-      <div>
+    <Nav />
+    </div>
+      <div className="allprofile">
         <h1>Profile</h1>
 
         <div className="info">My Information</div>
-
-        <input type="file" className="photo" style={{ display: "none" }} />
-
+        <div className="pic">
+          <Gravatar className="ava" email="farahb88@gmail.com" size={90} />
+          <input type="file" className="photo" style={{ display: "none" }} />
+        </div>
         <div>
           <form onSubmit={updateProfile}>
             <label htmlFor="name">
@@ -111,7 +115,7 @@ const Profile = () => {
           </form>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
