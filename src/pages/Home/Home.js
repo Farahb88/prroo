@@ -1,13 +1,14 @@
-import classes  from './Home.module.css';
-import Nav from "../../componants/navbar/Nav";
+
 import Tweets from '../tweet/Tweets';
+import Wrapper from '../../componants/navbar/wrapper';
 
 const Home = () => {
   return (
-    <div className={classes.home}>
-      <Nav/>
+    <Wrapper>
+    <div>
       <Tweets/>
     </div>
+    </Wrapper>
   );
 };
 

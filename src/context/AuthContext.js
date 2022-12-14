@@ -3,8 +3,7 @@ import { createContext, useState } from "react";
 export const AuthContext = createContext()
 
 const UserManager = ({children}) => {
-    // const [user, setUser] = useState(JSON.parse(localStorage.getItem('the_user') || "{}"))
-    const [user, setUser] = useState()
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('the_user') || "{}"))
     const [token, setToken] = useState(localStorage.getItem('the_token') || '')
 
     const signIn = ({data, token}) => {
@@ -32,3 +31,10 @@ const UserManager = ({children}) => {
 }
 
 export default UserManager
+
+
+
+
+
+
+
