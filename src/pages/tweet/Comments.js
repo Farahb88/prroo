@@ -1,7 +1,8 @@
 import { AuthContext } from "../../context/AuthContext";
 import { useContext, useEffect, useState, useRef } from "react";
 import clsses from './comments.module.css';
-
+import moment from "moment";
+import { fontFamily } from "@mui/system";
 
 
 const Farah = ({id}) => {
@@ -15,7 +16,7 @@ const Farah = ({id}) => {
   const fillcoment = (e) => {
     setCom(e.target.value)
   };
-
+  const daysss = comments.created_at;
 
   const createcom = async () => {
     console.log(com)
@@ -62,8 +63,7 @@ const Farah = ({id}) => {
       console.log(comments);
       console.log("fofo");
     }    
-    
-      return (
+     return (
         <div style={{
           width: '556px'
         }}>
@@ -93,12 +93,14 @@ const Farah = ({id}) => {
                       />
                       <div>
                         <div style={{
-                         fontWeight: '600'
+                         fontWeight: '600',
                         }} className="name">{coment.user.name}</div>
                         <div style={{
                           fontSize: '13px',
-                          fontWeight: '200'
-                        }} className="mb-2">date</div>
+                          fontWeight: '200',
+                          fontFamily:'Poppins',
+                          color:'#6c757d',
+                        }} className="mb-2">{moment(daysss).startOf("hh").fromNow()}</div>
                         <p style={{
                           fontWeight: "400",
                           fontSize: "20px"

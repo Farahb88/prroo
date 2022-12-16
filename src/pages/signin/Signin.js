@@ -8,7 +8,6 @@ const SignIn = () => {
   const passwordRef = useRef();
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
-  
 
   const login = async () => {
     const email = emailRef.current.value;
@@ -27,20 +26,18 @@ const SignIn = () => {
     const json = await response.json();
 
     if (json.success) {
-    authCtx.signIn(json)
-    setTimeout(() =>{
-      navigate("/");
-      window.alert(json.messages);
-    })
-
-      
+      authCtx.signIn(json);
+      setTimeout(() => {
+        navigate("/");
+        window.alert(json.messages);
+      });
     } else {
       window.alert(json.messages[0]);
     }
   };
-  const signupNavigate = () =>{
-    navigate("/signUp")
-  }
+  const signupNavigate = () => {
+    navigate("/signUp");
+  };
 
   return (
     <div className={classes.box}>
@@ -57,8 +54,12 @@ const SignIn = () => {
         <input ref={passwordRef} type="Password" id="name" />
 
         <div className={classes.btns}>
-          <input className={classes.btn} type="button" value="Login" onClick={login} />
-          <input className={classes.btn}type="button" onClick={signupNavigate} value="Register"/>
+          <div>
+            <a class href="/signUp" onClick={signupNavigate}> Register </a>
+          </div>
+          <input className={classes.btn}type="button"value="Login"onClick={login}/>
+
+          {/* <input className={classes.btn}type="button" onClick={signupNavigate} value="Register"/> */}
         </div>
       </div>
     </div>

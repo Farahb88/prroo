@@ -59,12 +59,13 @@ const SignUp = () => {
           <input ref={passwordconformationRef} type="Password" id="name"/>
 
           <div className={classes.btns}>
-            <input className={classes.btn}type="button"value="Login"onClick={() => navigate("/Signin")}/>
+            {/* <input className={classes.btn}type="button"value="Login"onClick={() => navigate("/Signin")}/> */}
+            <a class href="/Signin" onClick={() => navigate("/Signin")}> Login </a>
             <input className={classes.btn}type="button"value="Register"onClick={register}/>
 
           </div>
         </div>
-      </div>
+      </div>  
     </>
   );
 };

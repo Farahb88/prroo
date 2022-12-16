@@ -19,6 +19,7 @@ header{
 }
 .navbar{
 width: 260px;
-margin-left: 35px;
+margin-left: -5px;
 padding: 25px;
+border-right: solid 1px #e9ecef;
 }

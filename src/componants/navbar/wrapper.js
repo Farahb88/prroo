@@ -15,7 +15,7 @@ const Wrapper = (props) => {
         </div>
       </header>
       <div className="child">
-        <h1>{props.title}</h1>
+        <h4>{props.title}</h4>
         {props.children}
       </div>
     </div>

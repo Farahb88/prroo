@@ -51,7 +51,8 @@ input:focus{
 }
 .img{
     width: 100px;
-    margin-left: 150px;
+    margin-left: 125px;
+    padding-bottom: 15px;
 }
 h1 {
     display:  flex;

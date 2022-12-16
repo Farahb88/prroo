@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import classes from "./profile.module.css";
 import Wrapper from "../../componants/navbar/wrapper";
@@ -8,6 +8,7 @@ const Profile = () => {
   const [data, setUserData] = useState(user);
   const [mytweets, setmytweets] = useState([]);
   const [tws, settws] = useState ([]);
+  const photo = useRef();
   
   console.log(data);
   const updateProfile = async (e) => {
@@ -55,19 +56,22 @@ const Profile = () => {
 
   }
   useEffect(()=>{profile()}, []);
+
   return (
     <Wrapper title="Profile">
   <div className={classes.propage}>
         <div className={classes.allprofile}>
-
           <div className={classes.info}>My Information</div>
-          <div className={classes.pic}>
-            <img src={data.avatar}></img>
-            <input type="file" className={classes.photo} style={{ display: "none" }} />
-          </div>
+         
           <div className={classes.infobpx}>
             <form onSubmit={updateProfile} className={classes.myinfo}>
-              <label htmlFor="name">
+            <input  ref={photo} type={'file'} name="avatar" onChange={(e) =>{
+                        setUserData({
+                            ...data,
+                            avatar: e.target.value
+                        })}} style={{display:'none'}} />
+                     <div className={classes.pic}><img className={classes.imgpd} src={data.avatar} value={data.avatar} onClick={()=> photo.current.click()}></img></div>
+              <label htmlFor="name" >
                 Name <span style={{ color: "red" }}>*</span>
               </label>
               <input
@@ -143,16 +147,20 @@ const Profile = () => {
                 {" "}
                 update profile{" "}</button>
             </form>
-            <div>
-              <div className="info">My Posts</div>
+            <div class="mb-4 p-3" style={{
+              
+            }}>
+              <div className={classes.info}>My Posts</div>
               <div>
                 {mytweets?.length > 0 &&
                   mytweets.map((mytweet, i) => {
                     return (
-                      <div className={classes.tweetbtn}>
-                        <h1>{mytweet.content}</h1>
-                        <input type='button' className={classes.deletebtn} value='DELETE' onClick={()=>deletemytweet(mytweet.id)}/>
-                      </div>
+                      <ul >
+                        <li class="list-group-item d-flex align-items-center justify-content-between"></li>
+                        <span className={classes.text}>{mytweet.content}
+                        <button class="btn btn-danger" onClick={()=>deletemytweet(mytweet.id)}>DELETE</button>
+                        </span>
+                      </ul>
                     );
                   })}
               </div>
