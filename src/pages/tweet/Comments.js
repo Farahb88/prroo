@@ -2,14 +2,12 @@ import { AuthContext } from "../../context/AuthContext";
 import { useContext, useEffect, useState, useRef } from "react";
 import clsses from './comments.module.css';
 import moment from "moment";
-import { fontFamily } from "@mui/system";
 
 
 const Farah = ({id}) => {
   
   const [comments, setcommentts] = useState([]);
   const comentRef = useRef();
-  const [right, setRight] = useState(false);
   const [com, setCom] = useState('');
   const { token } = useContext(AuthContext);
 
@@ -114,9 +112,10 @@ const Farah = ({id}) => {
               <div style={{
                 display: 'flex',
                 flexDirection: 'row',
-                alignItems: 'center'
+                alignItems: 'center',
+                paddingTop:'15px'
               }}>
-              <input className={`${clsses.texto}  `} type="text" name="content" ref={comentRef} placeholder="right something" onChange={fillcoment}></input>
+              <input className={`${clsses.texto}  `} type="text" name="content" ref={comentRef} placeholder="wright something" onChange={fillcoment}></input>
               <button className="btn btn-primary w-25 me-5" onClick={() => addcoment()}>Add</button>
               </div>
             </div>

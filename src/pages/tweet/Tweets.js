@@ -3,7 +3,6 @@ import {
   ChatBubbleOutline,
   FavoriteBorder,
   Favorite,
-  ShowChart,
 } from "@mui/icons-material";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
@@ -76,7 +75,7 @@ const Tweets = () => {
     getTweets(count);
   }, [count]);
   const tweetload = () => {
-    if (count <= 1000) {
+    if (count <= 29) {
       setCount(count + 1);
     }
   };
@@ -91,9 +90,9 @@ const Tweets = () => {
   const goto = () => {
     navigate("/Signin");
   };
-  const [likes, setLikes] = useState();
-  const likeUnlike = async (post_id) => {
-    const respon = await fetch(`http://ferasjobeir.com/api/posts/${tweets.liked_by_current_user ? "unlike" : "like"}`,
+  const [likes, setLikes] = useState({post_id: tweets.id});
+  const likeUnlike = async (post) => {
+    const respon = await fetch(`http://ferasjobeir.com/api/posts/${post.liked_by_current_user?'unlike':'like'}`,
       {
         method: "POST",
         headers: {
@@ -101,7 +100,7 @@ const Tweets = () => {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          post_id,
+          post_id: post.id,
         }),
       }
     );
@@ -110,7 +109,7 @@ const Tweets = () => {
     if (json.success) {
       const newLike = [...tweets];
       const index = newLike.findIndex(
-        (singlePost) => singlePost.id == json.data.id
+        singlePost => singlePost.id == json.data.id
       );
       newLike[index] = json.data;
       setTweets(newLike);
@@ -156,7 +155,7 @@ const Tweets = () => {
       </div>
       {tweets?.length > 0 &&
         tweets.map((tweet, i) => {
-          const daysss = tweet.created_at;
+          const daysss = tweet.crnpmeated_at;
           return (
             <div
               key={i}
@@ -184,23 +183,20 @@ const Tweets = () => {
                       <div className="icons d-flex align-items-center">
                         <button
                           className="me-3 border rounded border bg-light py-1 px-2 d-flex align-items-center"
-                          id={likes}
-                          onClick={() => likeUnlike(tweet.id)}
-                        >
+                          id={likes}onClick={() => likeUnlike(tweet)}>
                           <div>
-                            {tweet.liked_by_current_user ? <Favorite style={{ color: "red" }} /> : <FavoriteBorder/> }
+                            {tweet.liked_by_current_user?<Favorite style={{ color: "red" }}/>:<FavoriteBorder/>}
                             {tweet.likes_count}
                           </div>
                         </button>
                         <button
-                          onClick={() => setOpen({ id: tweet.id, open: true })}
                           className="border rounded border bg-light py-1 px-2 d-flex align-items-center"
-                        >
+                            onClick={() => setOpen({ id: tweet.id, open: true })}>
                           <ChatBubbleOutline />
                           {tweet.comments_count}
                         </button>
                       </div>
-                      <div className="d-flex">
+                      <div className="d-flex" >
                         {show.open && show.id == tweet.id && (
                           <Farah id={tweet.id} />
                         )}

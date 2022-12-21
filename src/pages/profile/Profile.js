@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import classes from "./profile.module.css";
-import Wrapper from "../../componants/navbar/wrapper";
+import Wrapper from "../../componants/wrapper/wrapper";
 
 const Profile = () => {
   const { user, token } = useContext(AuthContext);
@@ -56,6 +56,7 @@ const Profile = () => {
 
   }
   useEffect(()=>{profile()}, []);
+  
 
   return (
     <Wrapper title="Profile">
@@ -154,11 +155,14 @@ const Profile = () => {
               <div>
                 {mytweets?.length > 0 &&
                   mytweets.map((mytweet, i) => {
+                    
                     return (
                       <ul >
                         <li class="list-group-item d-flex align-items-center justify-content-between"></li>
                         <span className={classes.text}>{mytweet.content}
-                        <button class="btn btn-danger" onClick={()=>deletemytweet(mytweet.id)}>DELETE</button>
+                        <button class="btn btn-danger btn-sm" onClick={
+                          ()=>{deletemytweet(mytweet.id) (window.confirm('Are you sure you wish to delete this item?')) }}
+                        >DELETE</button>
                         </span>
                       </ul>
                     );

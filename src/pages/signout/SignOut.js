@@ -1,24 +1,20 @@
 import { useContext, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext"
-
-const SignOut = () => {
-    const { signOut } = useContext(AuthContext)
+const Signout = () => {
+    const auth= useContext(AuthContext)
     const navigate = useNavigate()
     useEffect(() => {
-        signOut()
+        auth.signout()
         setTimeout(() => {
             navigate('/Signin')
-        }, 2000)
-    }, [])
+        },2000)
+    },[])
     return (
         <div >
-            <h3>
-                Looking forward to seeing you soon
-            </h3>
-            <p>Redirecting ...</p>
+
         </div>
     )
 }
 
-export default SignOut
+export default Signout

@@ -1,4 +1,4 @@
-import Nav from "./Nav";
+import Nav from "../navbar/Nav";
 import "./wrapper.css";
 
 const Wrapper = (props) => {

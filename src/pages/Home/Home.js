@@ -1,6 +1,6 @@
 
 import Tweets from '../tweet/Tweets';
-import Wrapper from '../../componants/navbar/wrapper';
+import Wrapper from '../../componants/wrapper/wrapper';
 
 const Home = () => {
   return (
