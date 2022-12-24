@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import React, { Suspense } from "react";
+import Loading from "./componants/loading/Loading"
+
 
 const SignUp = React.lazy(() => import("./pages/signup/Signup"));
 const SignIn = React.lazy(() => import("./pages/signin/Signin"));
@@ -13,12 +15,12 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/"element={<Suspense><Home/></Suspense>}></Route>
-        <Route path="/Signup" element={<Suspense><SignUp/></Suspense>}></Route>
-        <Route path="/Signin" element={<Suspense><SignIn/></Suspense>}></Route>
-        <Route path="/Signout" element={<Suspense><SignOut/></Suspense>}></Route>
-        <Route path="/Profile" element={<Suspense><Profile/></Suspense>}></Route>
-        <Route path="/Tweet" element={<Suspense><Tweets/></Suspense>}></Route>
+        <Route path="/"element={<Suspense fallback={<Loading/>}><Home/></Suspense>}></Route>
+        <Route path="/Signup" element={<Suspense fallback={<Loading/>}><SignUp/></Suspense>}></Route>
+        <Route path="/Signin" element={<Suspense fallback={<Loading/>}><SignIn/></Suspense>}></Route>
+        <Route path="/Signout" element={<Suspense fallback={<Loading/>}><SignOut/></Suspense>}></Route>
+        <Route path="/Profile" element={<Suspense fallback={<Loading/>}><Profile/></Suspense>}></Route>
+        <Route path="/Tweet" element={<Suspense fallback={<Loading/>}><Tweets/></Suspense>}></Route>
       </Routes>
     </>
   );

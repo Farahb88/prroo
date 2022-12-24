@@ -6,12 +6,13 @@
 .icons span {
   display: flex;
   flex-direction: row;
-  gap: 5px;
+  gap: 10px;
   cursor: pointer;
   list-style: none;
   padding: 10px;
   align-items: center;
   margin-bottom: 20px;
+  justify-content: space-between;
 
 }
 .icons span:hover {
@@ -22,9 +23,6 @@
 
 .bar2 span.active{
   background-color: black;
-}
-.bar.active{
-  color: red;
 }
 ul {
   padding: 0;

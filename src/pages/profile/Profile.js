@@ -155,7 +155,6 @@ const Profile = () => {
               <div>
                 {mytweets?.length > 0 &&
                   mytweets.map((mytweet, i) => {
-                    
                     return (
                       <ul >
                         <li class="list-group-item d-flex align-items-center justify-content-between"></li>

@@ -10,10 +10,10 @@ import LockIcon from "@mui/icons-material/Lock";
 import { useContext, useEffect, useState, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import moment from "moment/moment";
-import {  useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import Farah from "./Comments";
 import "bootstrap/dist/css/bootstrap.css";
-import loading from './loading.css'
+import Loading from "../../componants/loading/Loading";
 
 const Tweets = () => {
   const { token, user } = useContext(AuthContext);
@@ -27,6 +27,14 @@ const Tweets = () => {
     post[e.target.name] = e.target.value;
   };
   const tweetRef = useRef();
+  // const handleScroll = (tweetRef) => {
+  //   window.scrollTo({
+  //     top: tweetRef.offsetTop,
+  //     left: 0,
+  //     behavior: "smooth",
+  //   });
+  // };
+  
 
   const [show, setOpen] = useState({
     open: false,
@@ -75,7 +83,7 @@ const Tweets = () => {
     getTweets(count);
   }, [count]);
   const tweetload = () => {
-    if (count <= 29) {
+    if (count <= 100) {
       setCount(count + 1);
     }
   };
@@ -155,7 +163,7 @@ const Tweets = () => {
       </div>
       {tweets?.length > 0 &&
         tweets.map((tweet, i) => {
-          const daysss = tweet.crnpmeated_at;
+          const daysss = tweet.created_at;
           return (
             <div
               key={i}
@@ -191,9 +199,9 @@ const Tweets = () => {
                         </button>
                         <button
                           className="border rounded border bg-light py-1 px-2 d-flex align-items-center"
-                            onClick={() => setOpen({ id: tweet.id, open: true })}>
-                          <ChatBubbleOutline />
-                          {tweet.comments_count}
+                            onClick={() => setOpen({ id:tweet.id, open: true })}>
+                              <ChatBubbleOutline />
+                          <div>{tweet.comments_count}</div> 
                         </button>
                       </div>
                       <div className="d-flex" >
@@ -209,17 +217,24 @@ const Tweets = () => {
             </div>
           );
         })}
-         {/* <input class="loading-screen">
-    <div class="loading-animation">
-      <img src="https://image.flaticon.com/icons/svg/1409/1409945.svg" alt="" class="logo"/>
-      <div class="loading-bar" onClick={tweetload}></div>
-    </div>
-  </input> */}
+        {
+          <Loading />
+        }
       <input
         type="button"
         className="btn btn-primary d-flex "
-        value="load more"
+        // value="load more"
         onClick={tweetload}
+        style={{
+          display:"flex",
+          flexDirection:"row",
+          justifyContent:"center",
+          alignItems:"center",
+          marginLeft:"236px",
+          marginTop:"-93px",
+          backgroundColor:"white",
+          border:"none"
+        }}
       ></input>
     </>
   );
